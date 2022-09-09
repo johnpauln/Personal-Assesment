@@ -5,6 +5,7 @@
 
 trigger:
 - master
+## incase we also want the branches below to trigger a build
 # - develop/*
 # - staging/* 
 
@@ -92,16 +93,6 @@ stages:
              inputs: 
                targetType: 'inline'
                script:  |  
-
-
-          - task: AzureWebApp@1
-            displayName: 'Deploy App Service'
-            inputs:
-              azureSubscription: 'Inform-your-subscription'
-              appType: 'webAppLinux'
-              appName: 'angularwithazure'
-              package: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
-              runtimeStack: 'NODE|16-lts'
 
 - stage: Staging
   dependsOn: [ Development ]
